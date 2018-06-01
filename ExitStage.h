@@ -17,6 +17,8 @@ private:
 public:
 	virtual bool init() override;
 	virtual bool update(float dt) override;
-	virtual void draw(sf::RenderWindow &window) override;
+	virtual void input(sf::Event &) override;
+	virtual void render(sf::RenderWindow &window) override;
+//	virtual void draw(sf::RenderWindow &window) override;
 	virtual void release() override;
 };

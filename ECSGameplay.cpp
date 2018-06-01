@@ -1,11 +1,10 @@
 #include "ECSGameplay.h"
 #include "ResourcesManager.h"
-#include "DrawSystem.h"
 
 ECSGameplay::ECSGameplay()
 {
-	systems.add<DrawSystem>();
-
+    systems.add<RenderSystem>(ResourcesManager::getInstanceRef().window);
+    systems.add<MovementSystem>();
 	systems.configure();
 }
 
@@ -15,10 +14,11 @@ ECSGameplay::~ECSGameplay()
 
 bool ECSGameplay::update(float dt)
 {
+    systems.update<MovementSystem>(dt);
 	return true;
 }
 
-void ECSGameplay::draw(sf::RenderWindow &window)
+void ECSGameplay::draw()
 {
-	systems.update<DrawSystem>(0.f);
+    systems.update<RenderSystem>(0.f);
 }

@@ -7,7 +7,7 @@ GameStage::~GameStage()
 {
 }
 
-bool GameStage::run(float dt, sf::RenderWindow &window)
+bool GameStage::stage_switch()
 {
 	if (next_stage)
 	{
@@ -21,21 +21,36 @@ bool GameStage::run(float dt, sf::RenderWindow &window)
 			return false;
 		}
 	}
+	return true;
+}
+
+void GameStage::stage_input(sf::Event & event)
+{
+	if (active_stage)
+		active_stage->input(event);
+}
+
+bool GameStage::stage_update(float dt)
+{
 	if (active_stage)
 	{
-		if (active_stage->update(dt))
-		{
-			active_stage->draw(window);
-		}
-		else
+		if (!active_stage->update(dt))
 		{
 			active_stage->release();
 			active_stage = nullptr;
 			return false;
 		}
+
 		return true;
 	}
+
 	return false;
+}
+
+void GameStage::stage_render(sf::RenderWindow &window)
+{
+	if (active_stage)
+		active_stage->render(window);
 }
 
 void GameStage::set()

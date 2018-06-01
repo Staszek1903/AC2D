@@ -27,9 +27,14 @@ bool ExitStage::update(float dt)
 	return true;
 }
 
-void ExitStage::draw(sf::RenderWindow & window)
+void ExitStage::input(sf::Event &)
 {
 }
+
+void ExitStage::render(sf::RenderWindow & window)
+{
+}
+
 
 void ExitStage::release()
 {

@@ -11,22 +11,30 @@ SOURCES += \
     ResourcesManager.cpp \
     ECSGameplay.cpp \
     ExitStage.cpp \
-    DrawSystem.cpp \
-    Body.cpp \
     Functions.cpp \
     GameplayStage.cpp \
     GameStage.cpp \
-    MenuStage.cpp
+    MenuStage.cpp \
+    RenderSystem.cpp \
+    Components/position.cpp \
+    Components/velocity.cpp \
+    Components/rotation.cpp \
+    Systems/movementsystem.cpp \
+    Systems/RenderSystem.cpp
 
 HEADERS += \
     ResourcesManager.h \
     ECSGameplay.h \
     ExitStage.h \
-    DrawSystem.h \
     ClassesDeclarations.h \
-    Body.h \
     Functions.h \
     GameplayStage.h \
     GameStage.h \
     LibsAndDeclarations.h \
-    MenuStage.h
+    MenuStage.h \
+    RenderSystem.h \
+    Components/position.h \
+    Components/velocity.h \
+    Components/rotation.h \
+    Systems/movementsystem.h \
+    Systems/RenderSystem.h

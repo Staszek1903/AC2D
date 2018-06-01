@@ -1,6 +1,8 @@
 #pragma once
 
 #include "LibsAndDeclarations.h"
+#include "Systems/RenderSystem.h"
+#include "Systems/movementsystem.h"
 
 class ECSGameplay : public entityx::EntityX
 {
@@ -12,5 +14,5 @@ public:
 
 public:
 	bool update(float dt);
-	void draw(sf::RenderWindow &window);
+    void draw();
 };

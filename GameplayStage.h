@@ -13,14 +13,17 @@ public:
 	virtual ~GameplayStage();
 
 private:
+	float dtime;
+
 	sf::View camera;
-	std::unique_ptr<ECSGameplay> ecs_gameplay_ptr;
+    std::unique_ptr<ECSGameplay> ex_ptr;
 
 	void updateCamera();
 
 public:
 	virtual bool init() override;
 	virtual bool update(float dt) override;
-	virtual void draw(sf::RenderWindow &window) override;
+	virtual void input(sf::Event &) override;
+    virtual void render(sf::RenderWindow &window) override;
 	virtual void release() override;
 };

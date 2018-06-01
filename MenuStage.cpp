@@ -16,16 +16,21 @@ bool MenuStage::init()
 		return false;
 
 	message.setFont(font);
-	message.setCharacterSize(40);
-	message.setPosition(170.f, 150.f);
+    message.setCharacterSize(32);
+	message.setPosition(10, 10);
 	message.setFillColor(sf::Color::White);
 	message.setString("SFML test - MenuStage\nPress space to start the game");
+
+
+    ResourcesManager::getInstanceRef().camera.reset(sf::FloatRect(0, 0, 800, 600));
 
 	return true;
 }
 
 bool MenuStage::update(float dt)
 {
+	ResourcesManager::getInstanceRef().window.setView(ResourcesManager::getInstanceRef().camera);
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		ResourcesManager::getInstanceRef().gameplay_stage.set();
@@ -34,11 +39,15 @@ bool MenuStage::update(float dt)
 	return true;
 }
 
-void MenuStage::draw(sf::RenderWindow &window)
+void MenuStage::input(sf::Event &)
 {
-	window.clear(sf::Color(255, 0, 0));
+}
+
+void MenuStage::render(sf::RenderWindow & window)
+{
 	window.draw(message);
 }
+
 
 void MenuStage::release()
 {

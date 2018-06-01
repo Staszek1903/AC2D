@@ -1,4 +1,6 @@
 #include "GameplayStage.h"
+#include "ResourcesManager.h"
+
 
 GameplayStage::GameplayStage()
 {
@@ -11,37 +13,42 @@ GameplayStage::~GameplayStage()
 
 void GameplayStage::updateCamera()
 {
+	ResourcesManager::getInstanceRef().window.setView(ResourcesManager::getInstanceRef().camera);
 }
 
 bool GameplayStage::init()
 {
-	camera.reset(sf::FloatRect(-50, -25, 100, 50));
+    ResourcesManager::getInstanceRef().camera.reset(sf::FloatRect(0, 0, 800, 600));
+    ex_ptr = std::make_unique<ECSGameplay>();
 
-	ecs_gameplay_ptr = std::make_unique<ECSGameplay>();
+	auto &window = ResourcesManager::getInstanceRef().window;
+	auto &resource = ResourcesManager::getInstanceRef();
 
 	return true;
 }
 
 bool GameplayStage::update(float dt)
 {
+	dtime = dt;
 	updateCamera();
-
-	if (ecs_gameplay_ptr->update(dt)) return true;
-
-	return false;
+    ex_ptr->update(dt);
+    return true;
 }
 
-void GameplayStage::draw(sf::RenderWindow &window)
+void GameplayStage::input(sf::Event & ev)
 {
-	window.setView(camera);
-	window.clear(sf::Color(0, 255, 0));
-
-	ecs_gameplay_ptr->draw(window);
-
-	window.setView(window.getDefaultView());
+    if(ev.type = sf::Event::KeyPressed)
+        ResourcesManager::getInstanceRef().exit_stage.set();
 }
+
+void GameplayStage::render(sf::RenderWindow & window)
+{
+    ex_ptr->draw();
+}
+
+
 
 void GameplayStage::release()
 {
-	ecs_gameplay_ptr.reset();
+	
 }

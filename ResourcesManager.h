@@ -24,6 +24,12 @@ public:
 	static void deleteInstance();
 
 public:
+	sf::Font font;
+
+	std::shared_ptr<sf::Event> mainEvent;
+
+	sf::View camera;
+
 	sf::RenderWindow window;
 	MenuStage menu_stage;
 	GameplayStage gameplay_stage;
