@@ -3,6 +3,7 @@
 #include "LibsAndDeclarations.h"
 #include "GameStage.h"
 #include "ECSGameplay.h"
+#include <memory>
 
 class GameplayStage : public GameStage
 {

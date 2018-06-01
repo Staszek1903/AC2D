@@ -37,12 +37,15 @@ bool GameplayStage::update(float dt)
 
 void GameplayStage::input(sf::Event & ev)
 {
-    if(ev.type = sf::Event::KeyPressed)
+    if(ev.type == sf::Event::KeyPressed){
+        //std::cout<<"pressed"<<std::endl;
         ResourcesManager::getInstanceRef().exit_stage.set();
+    }
 }
 
 void GameplayStage::render(sf::RenderWindow & window)
 {
+    window.clear(sf::Color::Green);
     ex_ptr->draw();
 }
 

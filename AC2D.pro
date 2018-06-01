@@ -1,5 +1,5 @@
 TEMPLATE = app
-CONFIG += console c++14
+CONFIG += console c++17
 CONFIG -= app_bundle
 CONFIG -= qt
 
@@ -8,33 +8,35 @@ LIBS += -lentityx
 
 SOURCES += \
         main.cpp \
-    ResourcesManager.cpp \
     ECSGameplay.cpp \
     ExitStage.cpp \
     Functions.cpp \
     GameplayStage.cpp \
     GameStage.cpp \
     MenuStage.cpp \
-    RenderSystem.cpp \
-    Components/position.cpp \
+    ResourcesManager.cpp \
+    Systems/RenderSystem.cpp \
+    Systems/movementsystem.cpp \
     Components/velocity.cpp \
     Components/rotation.cpp \
-    Systems/movementsystem.cpp \
-    Systems/RenderSystem.cpp
+    Components/position.cpp
 
 HEADERS += \
-    ResourcesManager.h \
+    ClassesDeclarations.h \
     ECSGameplay.h \
     ExitStage.h \
-    ClassesDeclarations.h \
     Functions.h \
     GameplayStage.h \
     GameStage.h \
     LibsAndDeclarations.h \
     MenuStage.h \
-    RenderSystem.h \
-    Components/position.h \
+    ResourcesManager.h \
+    Components.h \
+    Systems/RenderSystem.h \
+    Systems/movementsystem.h \
     Components/velocity.h \
     Components/rotation.h \
-    Systems/movementsystem.h \
-    Systems/RenderSystem.h
+    Components/position.h
+
+DISTFILES += \
+    CMakeLists.txt

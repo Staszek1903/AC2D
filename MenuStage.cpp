@@ -45,6 +45,7 @@ void MenuStage::input(sf::Event &)
 
 void MenuStage::render(sf::RenderWindow & window)
 {
+    window.clear(sf::Color::Blue);
 	window.draw(message);
 }
 

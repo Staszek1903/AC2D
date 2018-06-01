@@ -1,4 +1,5 @@
 #include "ExitStage.h"
+#include "ResourcesManager.h"
 
 ExitStage::ExitStage() : timer(0.f)
 {
@@ -33,6 +34,7 @@ void ExitStage::input(sf::Event &)
 
 void ExitStage::render(sf::RenderWindow & window)
 {
+   window.clear(sf::Color::Black);
 }
 
 
