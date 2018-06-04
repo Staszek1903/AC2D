@@ -1,19 +1,17 @@
 #pragma once
 
-#ifndef PLAYERSYSTEM_H
-#define PLAYERSYSTEM_H
+#ifndef GRAVITYSYSTEM_H
+#define GRAVITYSYSTEM_H
 
 #include <entityx/entityx.h>
 #include "Components/velocity.h"
-#include "Components/player.h"
 #include "Components\gravity.h"
 
-class PlayerSystem : public entityx::System<PlayerSystem>
+class GravitySystem
 {
 public:
-	PlayerSystem();
+	GravitySystem();
 	void update(entityx::EntityManager & en, entityx::EventManager & ev, double dt);
 };
 
-
-#endif // PLAYERSYSTEM_h
+#endif // !GRAVITYSYSTEM_H
