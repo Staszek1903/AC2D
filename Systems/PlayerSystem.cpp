@@ -7,6 +7,8 @@ void PlayerSystem::update(entityx::EntityManager & en, entityx::EventManager & e
 {
 	Player::Handle player;
 	Velocity::Handle vel;
+	Gravity::Handle grav;
+	//Rotation::Handle rot;
 	//Position::Handle pos;
 
 	for (auto entity : en.entities_with_components(vel))
@@ -16,8 +18,7 @@ void PlayerSystem::update(entityx::EntityManager & en, entityx::EventManager & e
 			if (vel->vel.x <= 0) {
 				if (vel->vel.x < -player->walkSpeed)
 					vel->vel.x -= player->walkSpeed*player->walkAcceleration*dt;
-				else
-					vel->vel.x = -player->walkSpeed;
+				vel->vel.x = -player->walkSpeed;
 			}
 			else
 				vel->vel.x += player->walkSpeed*player->deceleration*dt;
@@ -27,15 +28,14 @@ void PlayerSystem::update(entityx::EntityManager & en, entityx::EventManager & e
 			if (vel->vel.x >= 0) {
 				if (vel->vel.x < player->walkSpeed)
 					vel->vel.x += player->walkSpeed*player->walkAcceleration*dt;
-				else
-					vel->vel.x = player->walkSpeed;
+				vel->vel.x = player->walkSpeed;
 			}
 			else
 				vel->vel.x -= player->walkSpeed*player->deceleration*dt;
 		}
 		// Jump
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-			vel->vel.y += player->jumpVelocity;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space /*&& isOnGround*/)) {
+			vel->vel.y = -player->jumpVelocity;
 		}
 	}
 

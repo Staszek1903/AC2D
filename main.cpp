@@ -54,6 +54,8 @@ void input()
 		GameStage::stage_input(*foo);
 	}
 
+
+
 }
 
 bool update()
@@ -70,7 +72,7 @@ bool update()
 
 		time -= sf::seconds(dt);
 	}
-
+	
 	return true;
 }
 

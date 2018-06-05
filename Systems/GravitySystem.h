@@ -7,7 +7,7 @@
 #include "Components/velocity.h"
 #include "Components\gravity.h"
 
-class GravitySystem
+class GravitySystem : public entityx::System<GravitySystem>
 {
 public:
 	GravitySystem();
