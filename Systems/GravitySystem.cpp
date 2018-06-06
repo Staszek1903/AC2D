@@ -13,7 +13,7 @@ void GravitySystem::update(entityx::EntityManager & en, entityx::EventManager & 
 	{
 		// if(!coll->collision.collidesFloor)
 		{
-			vel->vel.y -= gravity->gravity_strength * dt;
+			vel->vel.y += gravity->gravity_strength * dt;
 		}
 	}
 

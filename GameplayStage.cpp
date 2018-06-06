@@ -23,6 +23,23 @@ bool GameplayStage::init()
 
 	auto &window = ResourcesManager::getInstanceRef().window;
 	auto &resource = ResourcesManager::getInstanceRef();
+	
+	/*Test map objects*/
+	auto en = ex_ptr->entities.create();
+	en.assign<Player>(sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Up);
+	en.assign<Position>(sf::Vector2f(400, 50));
+	en.assign<Gravity>(10.0);
+	en.assign<Velocity>(sf::Vector2f(0, 0));
+	en.assign<Rotation>(0);
+	en.assign<Circle>(30, sf::Color::Red);
+
+	en = ex_ptr->entities.create();
+	en.assign<Position>(sf::Vector2f(200, 100));
+	en.assign<Gravity>(0.1);
+	en.assign<Velocity>(sf::Vector2f(0, 0));
+	en.assign<Rotation>(0);
+	en.assign<Rectangle>(sf::Vector2f(50, 20), sf::Color::Blue);
+	/*-Test map objects-*/
 
 	return true;
 }
@@ -37,7 +54,8 @@ bool GameplayStage::update(float dt)
 
 void GameplayStage::input(sf::Event & ev)
 {
-    if(ev.type == sf::Event::KeyPressed){
+    if(ev.type == sf::Event::KeyPressed 
+		&& sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
         //std::cout<<"pressed"<<std::endl;
         ResourcesManager::getInstanceRef().exit_stage.set();
     }

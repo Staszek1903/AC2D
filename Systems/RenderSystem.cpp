@@ -9,6 +9,33 @@ RenderSystem::RenderSystem(sf::RenderWindow &window) : win(window)
 
 void RenderSystem::update(entityx::EntityManager & en, entityx::EventManager & ev, double dt)
 {
+	Circle::Handle circle;
+	Rectangle::Handle rect;
+	Position::Handle pos;
+	Rotation::Handle rot;
+
+	for (auto entity : en.entities_with_components(circle, pos, rot)) {
+		sf::CircleShape cir;
+		cir.setRadius(circle->radius);
+		cir.setFillColor(circle->color);
+		cir.setOrigin(circle->radius, circle->radius);
+		cir.setPosition(pos->pos);
+		cir.setRotation(rot->rot);
+
+		win.draw(cir);
+	}
+
+	for (auto entity : en.entities_with_components(rect, pos, rot)) {
+		sf::RectangleShape rectangle;
+		rectangle.setSize(rect->dimensions);
+		rectangle.setFillColor(rect->color);
+		rectangle.setOrigin(rect->dimensions.x / 2.0, rect->dimensions.y / 2.0);
+		rectangle.setPosition(pos->pos);
+		rectangle.setRotation(rot->rot);
+
+		win.draw(rectangle);
+	}
+
 	/*****Example*****
 
 	backgroundTexture::Handle backgroundTH;
@@ -50,8 +77,6 @@ void RenderSystem::update(entityx::EntityManager & en, entityx::EventManager & e
 		}
 	}
 	*/
-
-
 
 }
 

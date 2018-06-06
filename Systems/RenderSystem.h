@@ -1,6 +1,9 @@
 #pragma once
 
 #include "LibsAndDeclarations.h"
+#include "Components\shapes.h"
+#include "Components\position.h"
+#include "Components\rotation.h"
 
 class RenderSystem : public entityx::System<RenderSystem>
 {

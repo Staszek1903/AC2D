@@ -20,8 +20,8 @@ struct Player : public entityx::Component<Player>
 
 	Player(KEY left, KEY right, KEY jump)
 		:left(left), right(right), jump(jump),
-		walkSpeed(300),
-		deceleration(1000), walkAcceleration(500), jumpVelocity(200) {}
+		walkSpeed(3),
+		deceleration(1), walkAcceleration(0.5), jumpVelocity(3) {}
 };
 
 #undef KEY

@@ -2,6 +2,8 @@
 #define MOVEMENTSYSTEM_H
 
 #include <entityx/entityx.h>
+#include "Components\position.h"
+#include "Components\velocity.h"
 
 class MovementSystem: public entityx::System<MovementSystem>
 {

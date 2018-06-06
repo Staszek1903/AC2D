@@ -2,7 +2,7 @@
 
 #include "LibsAndDeclarations.h"
 
-class GameStage 
+class GameStage
 {
 public:
 	GameStage() = default;
