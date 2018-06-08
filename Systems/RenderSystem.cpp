@@ -1,5 +1,5 @@
 #include "RenderSystem.h"
-
+#include "ResourcesManager.h"
 
 
 RenderSystem::RenderSystem(sf::RenderWindow &window) : win(window)
@@ -9,10 +9,40 @@ RenderSystem::RenderSystem(sf::RenderWindow &window) : win(window)
 
 void RenderSystem::update(entityx::EntityManager & en, entityx::EventManager & ev, double dt)
 {
-	Circle::Handle circle;
-	Rectangle::Handle rect;
+	auto & rM = ResourcesManager::getInstanceRef();
+
+	Shape::Handle shape;
+	SpriteShape::Handle sprite;
+	CircleShape::Handle circle;
+	RectangleShape::Handle rect;
+
 	Position::Handle pos;
 	Rotation::Handle rot;
+
+	for (auto entity : en.entities_with_components(sprite, pos, rot)) {
+		sf::Sprite shape;
+		shape.setTexture(sprite->texture);
+		shape.setPosition(pos->pos);
+		shape.setRotation(rot->rot);
+		shape.setOrigin(sprite->texture.getSize().x / 2.0, sprite->texture.getSize().y / 2.0);
+
+		win.draw(shape);
+	}
+
+
+	for (auto entity : en.entities_with_components(shape, pos, rot)) {
+		sf::Transform trans;
+		trans.translate(pos->pos);
+		trans.rotate(rot->rot);
+		//trans.scale(sf::Vector2f(50, 50));
+
+		sf::RenderStates state;
+		state.texture = &shape->texture;
+		state.transform = trans;
+
+		win.draw(shape->v, state);
+	}
+
 
 	for (auto entity : en.entities_with_components(circle, pos, rot)) {
 		sf::CircleShape cir;
@@ -21,6 +51,8 @@ void RenderSystem::update(entityx::EntityManager & en, entityx::EventManager & e
 		cir.setOrigin(circle->radius, circle->radius);
 		cir.setPosition(pos->pos);
 		cir.setRotation(rot->rot);
+		cir.setPointCount(circle->pointCount);
+		cir.setTexture(circle->texture);
 
 		win.draw(cir);
 	}
@@ -32,6 +64,7 @@ void RenderSystem::update(entityx::EntityManager & en, entityx::EventManager & e
 		rectangle.setOrigin(rect->dimensions.x / 2.0, rect->dimensions.y / 2.0);
 		rectangle.setPosition(pos->pos);
 		rectangle.setRotation(rot->rot);
+		rectangle.setTexture(rect->texture);
 
 		win.draw(rectangle);
 	}

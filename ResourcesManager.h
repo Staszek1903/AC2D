@@ -5,6 +5,8 @@
 #include "GameplayStage.h"
 #include "ExitStage.h"
 
+#include "vertex_data.h"
+
 class ResourcesManager
 {
 private:
@@ -14,6 +16,7 @@ private:
 	ResourcesManager(ResourcesManager&&) = delete;
 	ResourcesManager& operator=(ResourcesManager&&) = delete;
 	~ResourcesManager();
+	void loadVertexArray(sf::Vector2f v[], sf::Vector2f t[], int size);
 
 private:
 	static ResourcesManager *instance;
@@ -25,6 +28,9 @@ public:
 
 public:
 	sf::Font font;
+	
+	std::vector<sf::Texture> textures;
+	std::vector<sf::VertexArray> vertexArrays;
 
 	std::shared_ptr<sf::Event> mainEvent;
 

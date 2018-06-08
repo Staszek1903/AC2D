@@ -8,6 +8,7 @@
 #include "Components/player.h"
 #include "Components\gravity.h"
 #include "Components\rotation.h"
+#include "Components\movement.h"
 
 class PlayerSystem : public entityx::System<PlayerSystem>
 {

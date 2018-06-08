@@ -7,46 +7,26 @@ void PlayerSystem::update(entityx::EntityManager & en, entityx::EventManager & e
 {
 	Player::Handle player;
 	Velocity::Handle vel;
-	Gravity::Handle grav;
-	//Rotation::Handle rot;
-	//Position::Handle pos;
+	AdvanceMovement::Handle mov;
 
-	for (auto entity : en.entities_with_components(vel, player))
+	for (auto entity : en.entities_with_components(vel, player, mov))
 	{
 		// move left
-		if (sf::Keyboard::isKeyPressed(player->left)) {
-			if (vel->vel.x <= 0) {
-				vel->vel.x -= player->walkSpeed*player->walkAcceleration*dt;
-				if (vel->vel.x < -player->walkSpeed)
-					vel->vel.x = -player->walkSpeed;
-			}
-			else
-				vel->vel.x -= player->walkSpeed*player->deceleration*dt;
-		}
+		if (sf::Keyboard::isKeyPressed(player->left))
+			mov->moveLeft = true;
+		else
+			mov->moveLeft = false;
 		// move right
-		else if (sf::Keyboard::isKeyPressed(player->right)) {
-			if (vel->vel.x >= 0) {
-				vel->vel.x += player->walkSpeed*player->walkAcceleration*dt;
-				if (vel->vel.x > player->walkSpeed)
-					vel->vel.x = player->walkSpeed;
-			}
-			else
-				vel->vel.x += player->walkSpeed*player->deceleration*dt;
-		}
-		// if not walking then stop
-		else {
-			if (vel->vel.x > 0.01)
-				vel->vel.x -= player->walkSpeed*player->deceleration*dt;
-			else if (vel->vel.x < -0.01)
-				vel->vel.x += player->walkSpeed*player->deceleration*dt;
-			else
-				vel->vel.x = 0.0;
-		}
+		if (sf::Keyboard::isKeyPressed(player->right))
+			mov->moveRight = true;
+		else
+			mov->moveRight = false;
 
 		// Jump
-		if (sf::Keyboard::isKeyPressed(player->jump /*&& isOnGround*/)) {
-			vel->vel.y = -player->jumpVelocity;
-		}
+		if (sf::Keyboard::isKeyPressed(player->jump))
+			mov->jumping = true;
+		else
+			mov->jumping = false;
 	}
 
 }

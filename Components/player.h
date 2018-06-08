@@ -12,16 +12,14 @@ struct Player : public entityx::Component<Player>
 {
 	KEY left, right, jump;
 
-	float walkSpeed;
-	float walkAcceleration;
-	float deceleration;
-	
-	float jumpVelocity;
+	//float walkSpeed;
+	//float walkAcceleration;
+	//float deceleration;
+	//
+	//float jumpVelocity;
 
 	Player(KEY left, KEY right, KEY jump)
-		:left(left), right(right), jump(jump),
-		walkSpeed(3),
-		deceleration(1), walkAcceleration(0.5), jumpVelocity(3) {}
+		:left(left), right(right), jump(jump) {}
 };
 
 #undef KEY

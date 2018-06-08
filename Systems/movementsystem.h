@@ -4,6 +4,7 @@
 #include <entityx/entityx.h>
 #include "Components\position.h"
 #include "Components\velocity.h"
+#include "Components\movement.h"
 
 class MovementSystem: public entityx::System<MovementSystem>
 {
